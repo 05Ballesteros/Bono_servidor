@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --only=production
 
-COPY . .
+COPY . . 
 RUN npm run build
 
 # Etapa final
@@ -15,6 +15,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --only=production
 
+# Copiar la carpeta de archivos al contenedor (Excel, etc.)
+COPY files ./files
+
+# Copiar los archivos de compilación desde el builder
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/*.json .
 
