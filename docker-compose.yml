@@ -1,0 +1,10 @@
+services:
+  bono:  # <- nombre del servicio en minúsculas
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bono  # <- también en minúsculas
+    ports:
+      - "6000:6000"
+    environment:
+      NODE_ENV: production

@@ -1,10 +1,28 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { BonoModule } from './bono/bono.module';
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mssql',
+      host: '172.16.1.53',
+      port: 49286,
+      username: '#CBallesteros',
+      password: '123456',
+      database: 'Human',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      //synchronize: true, // ⚠️ Solo en desarrollo. No usar en producción.
+      options: {
+        encrypt: false,                 // Deshabilita cifrado para probar si ese es el problema
+        trustServerCertificate: true,  // Ignorar problemas de certificado (útil en dev)
+      },
+    }),
+    BonoModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
