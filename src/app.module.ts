@@ -8,11 +8,11 @@ import { BonoModule } from './bono/bono.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mssql',
-      host: '172.16.1.53',
-      port: 49286,
-      username: '#CBallesteros',
-      password: '123456',
-      database: 'Human',
+      host: '',
+      port: ,
+      username: '#',
+      password: '',
+      database: '',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       //synchronize: true, // ⚠️ Solo en desarrollo. No usar en producción.
       options: {
